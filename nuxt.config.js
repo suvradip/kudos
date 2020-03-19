@@ -1,3 +1,5 @@
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
 module.exports = {
    mode: 'universal',
    /*
@@ -19,6 +21,20 @@ module.exports = {
          {
             rel: 'stylesheet',
             href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
+         },
+         {
+            rel: 'stylesheet',
+            href: ' https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+         },
+      ],
+      script: [
+         {
+            src: '//cdn.fusioncharts.com/fusioncharts/3.15.0-sr.1/fusioncharts.js',
+            type: 'text/javascript',
+         },
+         {
+            src: '//cdn.fusioncharts.com/fusioncharts/3.15.0-sr.1/themes/fusioncharts.theme.fusion.js',
+            type: 'text/javascript',
          },
       ],
    },
@@ -50,12 +66,21 @@ module.exports = {
       '@nuxtjs/pwa',
       // Doc: https://github.com/nuxt-community/dotenv-module
       '@nuxtjs/dotenv',
+      'bootstrap-vue/nuxt',
    ],
+
+   bootstrapVue: {
+      componentPlugins: ['ToastPlugin', 'ModalPlugin'],
+   },
+
    /*
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
     */
-   axios: {},
+   axios: {
+      browserBaseURL: `/api/`,
+      baseURL: `http://localhost:${PORT}/api/`,
+   },
    /*
     ** Build configuration
     */

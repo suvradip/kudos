@@ -1,48 +1,86 @@
 <template>
    <div class="container">
-      <div>
-         <h1 class="title">
-            kudos
-         </h1>
+      <!-- <div class="row">
+         <div class="col-8 searchbar ">
+            <div class="input-group ">
+               <input type="text" class="form-control" placeholder="search" />
+               <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">SEARCH</button>
+               </div>
+            </div>
+         </div>
+      </div> -->
+
+      <div class="row ">
+         <div class="col-7">
+            <div class="row">
+               <div v-for="(item, index) in home" :key="index" class="col-12">
+                  <KudosCard :data="item" :rank="index + 1" />
+               </div>
+            </div>
+         </div>
+
+         <div class="col-5">
+            <Balance />
+         </div>
       </div>
    </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import KudosCard from '../components/KudosCard';
+import Balance from '../components/Balance';
+
 export default {
-   components: {},
+   name: 'HomeView',
+
+   middleware: 'auth',
+
+   components: {
+      KudosCard,
+      Balance,
+   },
+
+   async fetch({ store, params, error }) {
+      try {
+         await store.dispatch('FETCH_KUDOS');
+      } catch (e) {
+         error({ statusCode: 404 });
+      }
+   },
+
+   computed: {
+      ...mapState(['home']),
+   },
+
+   mounted() {
+      this.setAuthentication();
+   },
+
+   methods: {
+      setAuthentication() {
+         if (!localStorage.getItem('username') || typeof localStorage.getItem('username') === 'undefined') {
+            this.$router.push('/login');
+         }
+      },
+
+      // sortByKudosCount() {
+      //    const data = Object.create(this.home);
+      //    return data.sort((a, b) => {
+      //       if (a.kudos.count > b.kudos.count) return -1;
+      //       if (a.kudos.count < b.kudos.count) return 1;
+      //       return 1;
+      //    });
+      // },
+   },
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
-   margin: 0 auto;
-   min-height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-
-   .title {
-      font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-         'Helvetica Neue', Arial, sans-serif;
-      display: block;
-      font-weight: 300;
-      font-size: 100px;
-      color: #f54923;
-      letter-spacing: 1px;
-   }
-
-   .subtitle {
-      font-weight: 300;
-      font-size: 42px;
-      color: #526488;
-      word-spacing: 5px;
-      padding-bottom: 15px;
-   }
-
-   .links {
-      padding-top: 15px;
+   .searchbar {
+      margin-top: 25px;
    }
 }
 </style>
