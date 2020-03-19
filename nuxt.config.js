@@ -20,20 +20,20 @@ module.exports = {
          { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
          {
             rel: 'stylesheet',
-            href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
+            href: '/css/bootstrap.min.css',
          },
          {
             rel: 'stylesheet',
-            href: ' https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+            href: '/css/font-awesome.min.css',
          },
       ],
       script: [
          {
-            src: '//cdn.fusioncharts.com/fusioncharts/3.15.0-sr.1/fusioncharts.js',
+            src: '/js/fusioncharts/fusioncharts.js',
             type: 'text/javascript',
          },
          {
-            src: '//cdn.fusioncharts.com/fusioncharts/3.15.0-sr.1/themes/fusioncharts.theme.fusion.js',
+            src: '/js/fusioncharts/themes/fusioncharts.theme.fusion.js',
             type: 'text/javascript',
          },
       ],
