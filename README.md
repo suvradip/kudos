@@ -73,3 +73,5 @@ DELETE: /api/kudos
 
 To delete kudos
 ```
+
+Note: I'm using this https://i.pravatar.cc website pull images

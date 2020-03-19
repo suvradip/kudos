@@ -1,7 +1,7 @@
 {
    "name": "kudos",
    "version": "1.0.0",
-   "description": "My superior Nuxt.js project",
+   "description": "A application where users can give kudos to other",
    "author": "Suvradip Saha",
    "private": true,
    "scripts": {
