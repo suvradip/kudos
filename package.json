@@ -34,7 +34,7 @@
       "faker": "^4.1.0",
       "js-cookie": "^2.2.1",
       "morgan": "^1.9.1",
-      "nuxt": "^2.0.0",
+      "nuxt": "^2.16.3",
       "passport": "^0.4.1",
       "passport-local": "^1.0.0",
       "signale": "^1.4.0"
